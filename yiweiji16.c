@@ -51,6 +51,7 @@ int main(void)
 	energy.Threshole_bottom = 856;//59%
 	energy.Threshole_top = 898;//97%
 	onceBeep();
+	
 
 	while (TRUE)
 	{
