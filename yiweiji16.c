@@ -212,8 +212,8 @@ int main(void)
 			}
 			else
 			{
-				sendCMD(ackUlink, 6);
-				goto FINISHED;
+				LED_OFF;
+				//goto FINISHED;
 			}
 			if (chargeCount++ % 60000 == 0)
 			{
@@ -221,7 +221,6 @@ int main(void)
 				if (adcVal <= energy.Threshole_bottom)
 				{
 					LED_CHARGE_ON;
-					//sendCMD(ackCharging, 5);
 				}
 				else if (adcVal >= energy.Threshole_top)
 				{
@@ -235,10 +234,10 @@ int main(void)
 		else
 		{
 			LED_CHARGE_OFF;
+			LED_OFF;
 		}
 	FINISHED:
 		_WDR();
-		LED_OFF;
 		chargeCount = 0;
 		//default:all stop
 		toStop();
