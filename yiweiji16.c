@@ -50,8 +50,17 @@ int main(void)
 	//Only applicable to 16.1
 	energy.Threshole_bottom = 856;//59%
 	energy.Threshole_top = 898;//97%
+
+	//读取十次电量,填充队列
+	delay_ms(3000);
+	for (i = 0; i < 10; i++)
+	{
+		get_adc();
+		delay_ms(20);
+	}
 	onceBeep();
-	
+
+
 
 	while (TRUE)
 	{
@@ -231,7 +240,7 @@ int main(void)
 #else
 			LED_CHARGE_ON;
 #endif
-		}
+				}
 		else
 		{
 			LED_CHARGE_OFF;
@@ -242,6 +251,6 @@ int main(void)
 		chargeCount = 0;
 		//default:all stop
 		toStop();
-	}
+			}
 	return 0;
-}
+		}
