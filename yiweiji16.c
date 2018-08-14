@@ -51,7 +51,7 @@ int main(void)
 	energy.Threshole_bottom = 856;//59%
 	energy.Threshole_top = 898;//97%
 
-	//读取十次电量,填充队列
+	//
 	delay_ms(3000);
 	for (i = 0; i < 10; i++)
 	{
@@ -59,7 +59,6 @@ int main(void)
 		delay_ms(20);
 	}
 	onceBeep();
-
 
 
 	while (TRUE)
@@ -225,14 +224,15 @@ int main(void)
 				LED_OFF;
 				//goto FINISHED;
 			}
+
 			if (chargeCount++ % 60000 == 0)
 			{
 				adcVal = get_adc();
-				if (adcVal <= energy.Threshole_bottom)
+				if (adcVal < energy.Threshole_bottom)
 				{
 					LED_CHARGE_ON;
 				}
-				else if (adcVal >= energy.Threshole_top)
+				else if (adcVal > energy.Threshole_top)
 				{
 					LED_CHARGE_OFF;
 				}
@@ -240,7 +240,7 @@ int main(void)
 #else
 			LED_CHARGE_ON;
 #endif
-				}
+		}
 		else
 		{
 			LED_CHARGE_OFF;
@@ -251,6 +251,6 @@ int main(void)
 		chargeCount = 0;
 		//default:all stop
 		toStop();
-			}
+	}
 	return 0;
-		}
+}
