@@ -243,7 +243,11 @@ int main(void)
 				}
 				else if (adcVal < energy.Threshole_top - 5)
 				{
-					frequencyCount = 0;
+					if (frequencyCount >= 1)
+					{
+						frequencyCount--;
+					}
+
 				}
 			}
 #else
