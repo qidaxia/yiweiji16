@@ -238,6 +238,7 @@ int main(void)
 					frequencyCount++;
 					if (frequencyCount >= 20)
 					{
+						frequencyCount = 20;
 						LED_CHARGE_OFF;
 					}
 				}
@@ -253,7 +254,7 @@ int main(void)
 #else
 			LED_CHARGE_ON;
 #endif
-		}
+			}
 		else
 		{
 			LED_CHARGE_OFF;
@@ -264,6 +265,6 @@ int main(void)
 		chargeCount = 0;
 		//default:all stop
 		toStop();
-	}
+		}
 	return 0;
-}
+	}
