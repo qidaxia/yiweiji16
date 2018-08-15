@@ -28,6 +28,7 @@ int main(void)
 	u8 i = 0;
 	u16 adcVal = 0;
 	u16 chargeCount = 0;//充电计时
+	u16 frequencyCount = 0;//充电上限频率统计
 	delay_ms(500);//Ensure power supply
 	ioInit();
 	usartInit(19200);
@@ -234,7 +235,15 @@ int main(void)
 				}
 				else if (adcVal > energy.Threshole_top)
 				{
-					LED_CHARGE_OFF;
+					frequencyCount++;
+					if (frequencyCount >= 20)
+					{
+						LED_CHARGE_OFF;
+					}
+				}
+				else if (adcVal < energy.Threshole_top - 5)
+				{
+					frequencyCount = 0;
 				}
 			}
 #else
