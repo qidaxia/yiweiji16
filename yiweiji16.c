@@ -248,7 +248,6 @@ int main(void)
 					{
 						frequencyCount--;
 					}
-
 				}
 			}
 #else
