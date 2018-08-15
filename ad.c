@@ -38,6 +38,7 @@ extern u16 get_adc(void)
 	u16 adctemp;
 	u8 i = 0;
 	u16 sum = 0;
+	u16 retval = 0;
 
 	adctemp = adc();
 	if (adcManage.index < ADCBUFFERLEN)
@@ -58,7 +59,28 @@ extern u16 get_adc(void)
 		}
 		adcManage.adcBase[ADCBUFFERLEN - 1] = adc();
 		sum += adcManage.adcBase[ADCBUFFERLEN - 1];
-		return sum / ADCBUFFERLEN;
+		retval = sum / ADCBUFFERLEN;
+		/*!
+		* @brief:  ÏŞ·ùÂË²¨
+		*/
+		/*for (i = 0; i < ADCBUFFERLEN; i++)
+		{
+			_WDR();
+			if (getAbs(adcManage.adcBase[i], retval)>10)
+			{
+				adcManage.adcBase[i] = retval;
+				break;
+			}
+		}*/
+		return retval;
 	}
 
+}
+static u16 getAbs(u16 a, u16 b)
+{
+	if (a > b)
+	{
+		return (a - b);
+	}
+	return (b - a);
 }

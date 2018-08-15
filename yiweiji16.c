@@ -53,7 +53,7 @@ int main(void)
 
 	//
 	delay_ms(3000);
-	for (i = 0; i < 10; i++)
+	for (i = 0; i < 20; i++)
 	{
 		get_adc();
 		delay_ms(20);
