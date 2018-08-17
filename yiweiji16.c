@@ -47,6 +47,7 @@ int main(void)
 	speed.SpeedUpDelay_walk = 1;
 	speed.BrakeReleaseDelay = 0;
 
+	energy.contact = FALSE;
 	energy.Current_energy = 0;
 	//Only applicable to 16.1
 	energy.Threshole_bottom = 856;//59%
@@ -201,6 +202,13 @@ int main(void)
 			case CFG_UPLOAD_PARAMS:
 				saveParameterToEeprom();
 				break;
+				//debug
+			case CFG_SOFT_CONTACT:
+				energy.contact = TRUE;
+				break;
+			case CFG_SOFT_UNCONTACT:
+				energy.contact = FALSE;
+				break;
 
 			default:
 				toStop();
@@ -242,7 +250,7 @@ int main(void)
 						LED_CHARGE_OFF;
 					}
 				}
-				else if (adcVal < energy.Threshole_top - 5)
+				else if (adcVal < energy.Threshole_top - 2)
 				{
 					if (frequencyCount >= 1)
 					{

@@ -72,6 +72,13 @@ extern u8 IsPowerRequest(void)
 
 extern u8 IsContact(void)
 {
+	/*!
+	* @brief: 接受上位机调试 
+	*/ 
+	if (energy.contact)
+	{
+		return TRUE;
+	}
 	if (PINC&BIT(IO_CONTACT))
 	{
 		return FALSE;
