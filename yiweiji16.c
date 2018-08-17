@@ -239,6 +239,7 @@ int main(void)
 			if (chargeCount++ >= 60000)
 			{
 				chargeCount = 0;
+
 				adcVal = get_adc();
 				if (adcVal < energy.Threshole_bottom)
 				{
