@@ -248,9 +248,9 @@ int main(void)
 				else if (adcVal >= energy.Threshole_top)
 				{
 					frequencyCount++;
-					if (frequencyCount >= 10)
+					if (frequencyCount >= 6)
 					{
-						frequencyCount = 10;
+						frequencyCount = 0;
 						LED_CHARGE_OFF;
 					}
 				}
