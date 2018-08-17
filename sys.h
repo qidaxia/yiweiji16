@@ -48,6 +48,9 @@ typedef enum
 	CFG_RESTART = 'E',				///< 软件复位
 	CFG_HAND = 'H',					///< 握手
 
+	CFG_SOFT_CONTACT='G',			///< 软件接触良好（调试用）
+	CFG_SOFT_UNCONTACT='J',			///< 软件断开接触（调试用）
+
 	CFG_LOAD_PARAMS='L',			///< 从eeprom中加载参数
 	CFG_UPLOAD_PARAMS='M',			///< 将参数保存至eeprom中
 
@@ -71,6 +74,8 @@ typedef struct
 	u16 Current_energy;		///< 当前电压
 	u16 Threshole_top;		///< 门限电压
 	u16 Threshole_bottom;	///< 门限电压
+	u8	contact;			///< 接触是否良好
+	u8  reserve;			///< 保留
 
 }ENERGY;
 
