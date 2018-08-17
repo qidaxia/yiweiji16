@@ -51,7 +51,7 @@ int main(void)
 	energy.Current_energy = 0;
 	//Only applicable to 16.1
 	energy.Threshole_bottom = 856;//59%
-	energy.Threshole_top = 898;//97%
+	energy.Threshole_top = 900;//97%
 
 	//
 	delay_ms(3000);
@@ -202,7 +202,7 @@ int main(void)
 			case CFG_UPLOAD_PARAMS:
 				saveParameterToEeprom();
 				break;
-				//debug
+				//debug contact
 			case CFG_SOFT_CONTACT:
 				energy.contact = TRUE;
 				echo();
@@ -236,27 +236,28 @@ int main(void)
 				//goto FINISHED;
 			}
 
-			if (chargeCount++ % 60000 == 0)
+			if (chargeCount++ >= 60000)
 			{
+				chargeCount = 0;
 				adcVal = get_adc();
 				if (adcVal < energy.Threshole_bottom)
 				{
 					LED_CHARGE_ON;
 				}
-				else if (adcVal > energy.Threshole_top)
+				else if (adcVal >= energy.Threshole_top)
 				{
 					frequencyCount++;
-					if (frequencyCount >= 20)
+					if (frequencyCount >= 10)
 					{
-						frequencyCount = 20;
+						frequencyCount = 10;
 						LED_CHARGE_OFF;
 					}
 				}
-				else if (adcVal < energy.Threshole_top - 2)
+				else if (adcVal < energy.Threshole_top)
 				{
 					if (frequencyCount >= 1)
 					{
-						frequencyCount--;
+						frequencyCount = 0;
 					}
 				}
 			}
@@ -271,7 +272,6 @@ int main(void)
 		}
 	FINISHED:
 		_WDR();
-		chargeCount = 0;
 		//default:all stop
 		toStop();
 		}
