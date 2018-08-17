@@ -543,6 +543,10 @@ extern void echo(void)
 	uartSendB(0xAA);
 	uartSendB(energy.Threshole_bottom >> 8);
 	uartSendB(energy.Threshole_bottom);
+	//add contact
+	uartSendB(0xAA);
+	uartSendB(energy.contact >> 8);
+	uartSendB(energy.contact);
 
 	return;
 }

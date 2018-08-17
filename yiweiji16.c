@@ -205,9 +205,11 @@ int main(void)
 				//debug
 			case CFG_SOFT_CONTACT:
 				energy.contact = TRUE;
+				echo();
 				break;
 			case CFG_SOFT_UNCONTACT:
 				energy.contact = FALSE;
+				echo();
 				break;
 
 			default:
