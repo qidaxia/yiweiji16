@@ -51,7 +51,7 @@ int main(void)
 	energy.Current_energy = 0;
 	//Only applicable to 16.1
 	energy.Threshole_bottom = 856;//59%
-	energy.Threshole_top = 900;//97%
+	energy.Threshole_top = 901;//97%
 
 	//
 	delay_ms(3000);
