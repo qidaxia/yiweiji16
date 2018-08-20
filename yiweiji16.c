@@ -236,7 +236,7 @@ int main(void)
 				//goto FINISHED;
 			}
 
-			if (chargeCount++ >= 60000)
+			if (chargeCount++ >= 30000)
 			{
 				chargeCount = 0;
 
