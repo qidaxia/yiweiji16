@@ -38,7 +38,10 @@ int main(void)
 	adc_init();
 
 	speed.MaxSpeed_lift = 1022;
-	speed.MaxSpeed_walk = 507;//行走速度调节，1022对应最大速度
+	//507：正常运行速度
+	//speed.MaxSpeed_walk = 507;//行走速度调节，1022对应最大速度
+	//现在为了调试，将速度调至最大
+	speed.MaxSpeed_walk = 1024;
 	speed.MinSpeed_lift = 100;
 	speed.MinSpeed_walk = 400;
 	speed.SpeedDownDelay_lift = 0;
@@ -265,7 +268,7 @@ int main(void)
 #else
 			LED_CHARGE_ON;
 #endif
-			}
+				}
 		else
 		{
 			LED_CHARGE_OFF;
@@ -275,6 +278,6 @@ int main(void)
 		_WDR();
 		//default:all stop
 		toStop();
-		}
+			}
 	return 0;
-	}
+		}

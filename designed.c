@@ -251,7 +251,7 @@ END:
 
 extern void handlerLiftForCmd(CMD dir, u8(*limitFun)(void))
 {
-	CMD cmd = STOP;
+	CMD cmd = FORWARD;
 	u16 timeout = 0;
 	speedToMin(LIFT);
 	delay_ms(10);
@@ -308,7 +308,7 @@ END:
 
 extern void handlerWalkForCmd(CMD dir, u8(*limitfun)(void))
 {
-	CMD cmd = STOP;
+	CMD cmd = UP;
 	u16	timeout = 0;
 	speedToMin(WALK);
 	if (savePowerFlag || limitfun())
@@ -339,7 +339,7 @@ extern void handlerWalkForCmd(CMD dir, u8(*limitfun)(void))
 
 	while (TRUE)
 	{
-		if (checkFrame(&cmd) == 0)
+		if (checkFrame(&cmd) == 0 && cmd == STOP)
 		{
 			goto END;
 		}
